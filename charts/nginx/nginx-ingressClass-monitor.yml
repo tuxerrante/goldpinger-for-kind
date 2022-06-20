@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: nginx-monitor
+spec:
+  controller: k8s.io/nginx-monitor-ingress
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: goldpinger
+#   namespace: monitor
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+# spec:
+#   ingressClassName: nginx-monitor
+#   rules:
+#   - http:
+#       paths:
+#       - pathType: Prefix
+#         path: "/goldpinger(/|$)(.*)"
+#         backend:
+#           service:
+#             name: goldpinger
+#             port:
+#               number: 80
