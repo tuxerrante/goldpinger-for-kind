@@ -94,7 +94,7 @@ podSecurityPolicy:
   policyName: unrestricted-psp
 
 serviceMonitor:
-  enabled: false
+  enabled: true
   selector:
     prometheus: "kube-prometheus"
   # namespace: monitoring
@@ -104,7 +104,7 @@ serviceMonitor:
 ## Custom PrometheusRule to be defined
 ## ref: https://github.com/coreos/prometheus-operator#customresourcedefinitions
 prometheusRule:
-  enabled: false
+  enabled: true
   rules:
     - alert: goldpinger_nodes_unhealthy
       expr: |
@@ -117,4 +117,3 @@ prometheusRule:
         summary: Instance {{ "{{ $labels.instance }}" }} down
       labels:
         severity: warning
-# -------------- END of Goldpinger configs --------------

@@ -56,4 +56,14 @@ helm install goldpinger okgolove/goldpinger \
 
 
 ## 4. Metrics Server
-TBD
+```
+helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
+helm repo update
+kubectl create ns metrics
+helm upgrade --install metrics-server metrics-server/metrics-server --namespace metrics 
+
+kubectl patch deployment -n metrics --type=merge metrics-server --patch-file=metrics-server/metrics-server-unsecure.yml
+
+kubectl rollout restart deployment -n metrics metrics-server
+kubectl logs -n metrics  -l app.kubernetes.io/instance=metrics-server
+```
